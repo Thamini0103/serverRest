@@ -1,0 +1,46 @@
+# Este é um fluxo de trabalho básico para ajudar você a começar a usar o Actions
+
+name: Newman run
+
+# Controla quando o fluxo de trabalho será executado
+on:
+  # Aciona o fluxo de trabalho em eventos de push ou pull request, mas apenas para a branch "main"
+  push:
+    branches: [ "main" ]
+
+# Uma execução de fluxo de trabalho é composta por um ou mais jobs que podem ser executados sequencialmente ou em paralelo
+jobs:
+  # Este fluxo de trabalho contém um único job chamado "newman"
+  newman:
+    # O tipo de executor no qual o job será executado
+    runs-on: ubuntu-latest
+
+    # Etapas representam uma sequência de tarefas que serão executadas como parte do job
+    steps:
+      # Faz o checkout do seu repositório em $GITHUB_WORKSPACE, para que seu job possa acessá-lo
+      - uses: actions/checkout@v4
+
+      # Executa um único comando usando o shell do executor
+      - name: creat dir for reports
+        run: |
+          mkdir testArtifacts
+
+      # Executa um conjunto de comandos usando o shell do executor
+      - name: Install Newman
+        run: |
+        npm install -g newman
+        npm install -g newman-reporter-htmlextra
+
+       # Executa um conjunto de comandos usando o shell do executor
+      - name: Run Test
+        run: |
+        newman run ServerRest.postman_collection.json -e serveRest_env.postman_environment.json -r cli,htmlextra
+
+       # Executa um conjunto de comandos usando o shell do executor
+      - name: Reportt
+        uses: action/upload-artifact@v3.1.2
+        with:
+          name: Reports
+          path: newman
+        
+          
