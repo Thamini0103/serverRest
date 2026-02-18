@@ -28,13 +28,12 @@ jobs:
       # Executa um conjunto de comandos usando o shell do executor
       - name: Install Newman
         run: |
-        npm install -g newman
-        npm install -g newman-reporter-htmlextra
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
 
        # Executa um conjunto de comandos usando o shell do executor
       - name: Run Test
-        run: |
-        newman run ServerRest.postman_collection.json -e serveRest_env.postman_environment.json -r cli,htmlextra
+        run: newman run ServerRest.postman_collection.json -e serveRest_env.postman_environment.json -r cli,htmlextra
 
        # Executa um conjunto de comandos usando o shell do executor
       - name: Reportt
