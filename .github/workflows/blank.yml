@@ -41,7 +41,7 @@ jobs:
 
        # Executa um conjunto de comandos usando o shell do executor
       - name: Reportt
-        uses: action/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: Reports
           path: newman
