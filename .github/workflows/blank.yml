@@ -36,7 +36,7 @@ jobs:
       - name: Executar Testes da API
         run: |
           newman run ServerRest.postman_collection.json \
-          -e serveRest_env.postman_environment.json \
+          -e ServeRest.postman_environment.json \
           -r htmlextra \
           --reporter-htmlextra-export newman/report.html
     
