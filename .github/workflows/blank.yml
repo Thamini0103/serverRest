@@ -35,7 +35,7 @@ jobs:
       # Importante: O caminho dos arquivos .json deve estar correto na raiz do seu repo
       - name: Executar Testes da API
         run: |
-          newman run ServerRest.postman_collection.json \
+          newman run serverest.postman_collection.json \
           -e ServeRest.postman_environment.json \
           -r htmlextra \
           --reporter-htmlextra-export newman/report.html
