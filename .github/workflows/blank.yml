@@ -37,9 +37,9 @@ jobs:
         run: |
           newman run ServerRest.postman_collection.json \
           -e serveRest_env.postman_environment.json \
-          -r cli,htmlextra \
+          -r htmlextra \
           --reporter-htmlextra-export newman/report.html
-
+    
       # 6. Faz o upload do relatório HTML para o GitHub
       - name: Publicar Relatório
         if: always() # Garante que o relatório seja gerado mesmo se os testes falharem
